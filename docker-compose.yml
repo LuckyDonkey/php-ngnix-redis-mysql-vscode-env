@@ -1,0 +1,72 @@
+version: "3.5"
+services:
+    web:
+        image: nginx
+        volumes:
+            - ./nginx/templates:/etc/nginx/templates
+            #- /Users/zhoujinbo/Documents/docker/php-docker-test/nginx/www:/usr/share/nginx/html:ro
+            - ./nginx/www:/usr/share/nginx/html:ro
+        ports:
+            - "8080:80"
+        environment:
+            - NGINX_HOST=localhost
+            - NGINX_PORT=80
+            - PHP_HOST=php
+        links: 
+            - php
+        networks: 
+            common_net:
+    php:
+        build: ./php
+        volumes: 
+            #- /Users/zhoujinbo/Documents/docker/php-docker-test/php/www:/var/www/html
+            - ./php/www:/var/www/html
+            #- /Users/zhoujinbo/Documents/docker/php-docker-test/php/etc:/usr/local/etc
+            #- /Users/zhoujinbo/Documents/docker/php-docker-test/php/log:/var/log/php
+            - ./php/log:/var/log/php
+            #- /Users/zhoujinbo/Documents/docker/php-docker-test/php/bin:/usr/local/bin
+        ports: 
+            - "9000"
+        links: 
+            - redis
+            - mysql
+        networks: 
+            common_net:
+    redis:
+        image: redis:alpine
+        ports:
+            - "6379"
+        networks:
+            common_net:
+    mysql:
+        image: mysql:5.7
+        ports:
+            - "3363:3306"
+        volumes:
+#            - ./mysql/config/my.cnf:/etc/mysql/my.cnf:ro
+            - ./mysql/config/conf.d:/etc/mysql/conf.d:ro
+#            - ./config/mysql/my.cnf:/etc/mysql/my.cnf:ro
+            - ./mysql/data/:/var/lib/mysql/:rw
+            - ./mysql/log/:/var/log/mysql/:rw
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+        networks:
+            common_net:
+    phpMyAdmin:
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - mysql
+        ports: 
+            - "8081:80"
+        environment: 
+            - PMA_HOST=mysql
+            #- PMA_PORT=3363
+            - PMA_USER=root
+            - PMA_PASSWORD=123456
+            #- PMA_CONTROLHOST=localhost
+            #- PMA_CONTROLPORT=88
+            #- PMA_ABSOLUTE_URI=http://localhost:8081/phpmyadmin
+        networks:
+            common_net:
+networks: 
+    common_net:

@@ -1,6 +1,3 @@
-# php-ngnix-redis-mysql-vscode-env
-php+ngnix+redis+mysql+vscode+phpunit 搭建到开发环境
-
 如何使用：
 1、打开命令行：mac（终端）、window（命令行）
 2、cd /进入当前项目的根目录
@@ -56,7 +53,13 @@ author：eric-c-hansen
 
 
 其他事项：
+Php源代码存放在：php/www/中
 http://localhost:8080/     php的路径
+http://localhost:8080/hello.php
+http://localhost:8080/mysql_test.php
+http://localhost:8080/redis_test.php
+http://localhost:8080/phpInfo.php
+
 http://localhost:8081/     phpmyadmin的网址
 链接上redis进行命令行操作： 
-docker container exec -it php-docker-test_redis_1 redis-cli
+docker container exec -it php-ngnix-redis-mysql-vscode-env_redis_1 redis-cli
