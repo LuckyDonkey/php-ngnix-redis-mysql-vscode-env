@@ -51,6 +51,10 @@ author：eric-c-hansen
     "code_path": "/var/www/html"
   }
 
+   另外，记得打开vscode的左侧栏：Run，然后在左下角会出现一个小模块：BREAKPOINTS 中，把EveryThing项的勾选去掉，
+  如果不去掉这个EveryThing的勾选，在phpunit的debug时，总是会出现各种异常问题，例如：
+  Unable to open 'TestCase.php': Unable to read file '/usr/local/bin/phpunit/phpunit/Framework/TestCase.php' (Error: Unable to resolve non-existing file '/usr/local/bin/phpunit/phpunit/Framework/TestCase.php').
+
 
 其他事项：
 Php源代码存放在：php/www/中
