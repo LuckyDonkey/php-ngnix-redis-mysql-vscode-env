@@ -68,7 +68,7 @@ RUN pecl install redis-5.1.1 && docker-php-ext-enable redis
 RUN docker-php-ext-configure opcache --enable-opcache && docker-php-ext-install opcache
 
 # xdebug 扩展
-RUN pecl install xdebug-2.8.1 && docker-php-ext-enable xdebug
+RUN pecl install xdebug-2.8.1 && chmod 777 /tmp/pear/download/xdebug-2.8.1.tgz && docker-php-ext-enable xdebug
 
 # swoole 扩展
 #RUN pecl install swoole-4.4.0 && docker-php-ext-enable swoole
