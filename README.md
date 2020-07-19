@@ -1,5 +1,5 @@
 如何使用：
-1、打开命令行：mac（终端）、window（命令行）
+1、打开命令行：mac（终端）、window（命令行） 注意：在windowx下运行需要将docker切换到linux container。另外还需要配置项目文件的文件共享，如果装mysql的时候会报错：500错误。
 2、cd /进入当前项目的根目录
 3、执行指令 docker-compose up -d
 执行完，整个php的开发环境就搭建成功了，
